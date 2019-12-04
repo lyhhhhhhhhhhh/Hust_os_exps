@@ -1,0 +1,3 @@
+/home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/rebuild_cache.dir
+/home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/cmake_test.dir
+/home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/edit_cache.dir

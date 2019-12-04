@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/cmake_test.dir/exp1.c.o  -o cmake_test 
