@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
@@ -11,6 +12,20 @@
 
 #define BUF_NUM 3
 #define BUF_SIZE 3
+
+#include <sys/stat.h>
+
+int get_file_size(const char *path)//use the struct in linux to get the file of input.txt.
+{
+	int filesize = -1;	
+	struct stat statbuff;
+	if(stat(path, &statbuff) < 0){
+		return filesize;
+	}else{
+		filesize = statbuff.st_size;
+	}
+	return filesize;
+}
 
 int semid,shmid[BUF_NUM];
 void* buf_id[BUF_NUM];
@@ -36,14 +51,16 @@ int main(int argc, char const *argv[]) {
 
     semid = semget(1, 3, IPC_CREAT | 0666);
 
-    semctl(semid, 0, SETVAL, BUF_NUM);//信号灯1,表示缓冲区剩余空间，初始值为1
+    semctl(semid, 0, SETVAL, BUF_NUM);//信号灯1,表示缓冲区剩余缓冲块，初始值为BUF_NUM.
     semctl(semid,1,SETVAL,0);//信号灯2,表示缓冲区元素数，初始值为0
     semctl(semid, 2, SETVAL, 1);// Mutex, which is avoid the buffer in race condition.
 
+    /*shm initial*/
     for (int i=0; i<BUF_NUM; i++) {
         shmid[i] = shmget(IPC_PRIVATE, BUF_SIZE, IPC_CREAT | 0666);
     }
 
+    /*shmat the shm*/
     for (int i=0; i<BUF_NUM; i++) {
         buf_id[i] =shmat(shmid[i], NULL, 0);
     }
@@ -52,6 +69,8 @@ int main(int argc, char const *argv[]) {
     int fd_out = open("./output.txt", O_WRONLY | O_CREAT);
 
     int i;
+
+    int file_size = get_file_size("./input.txt");// get the size of the file.
 
     for (i = 0; i < 2; i++) {
 		if((pid[i] = fork()) == 0) {
@@ -68,13 +87,11 @@ int main(int argc, char const *argv[]) {
 
             size = read(fd_in, buf_id[id], BUF_SIZE);
 
-            printf("read: %c\n",&buf_id[id]);
-
             V(semid, 2);
             V(semid, 1);
 
             if(size < BUF_SIZE) {
-                break;
+                break;//break out of the while, when the file is finished reading.
             }
 
             id +=1;
@@ -89,14 +106,19 @@ int main(int argc, char const *argv[]) {
             P(semid, 1);
             P(semid, 2);
 
-            write_size = write(fd_out, buf_id[id], BUF_SIZE);
+            file_size -= write_size;//calculate the left file to write.
 
-            printf("wrire: %d\n",write_size);
+            if(file_size <= 0 ) {
+                write_size = write(fd_out, buf_id[id], file_size+BUF_SIZE);
+            } else
+            {
+                write_size = write(fd_out, buf_id[id], BUF_SIZE);
+            }      
 
             V(semid, 2);
             V(semid, 0);
 
-            if(write_size < BUF_SIZE) {
+            if(file_size <= 0) {
                 break;
             }
 
@@ -108,6 +130,10 @@ int main(int argc, char const *argv[]) {
         waitpid(pid[0],NULL,0);
         waitpid(pid[1],NULL,0);
 
+        for (int i=0; i<BUF_NUM; i++) {
+            shmctl(shmid[i], IPC_RMID,NULL);
+        }
+
         close(fd_in);
         close(fd_out);          
 	}
@@ -115,4 +141,5 @@ int main(int argc, char const *argv[]) {
 	return 0;
 
 }
+
 
