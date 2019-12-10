@@ -7,7 +7,6 @@
 #include <sys/wait.h>
 
 #include<sys/types.h>
-#include<sys/stat.h>
 #include<fcntl.h> // open()
 
 #define BUF_NUM 3
@@ -65,8 +64,8 @@ int main(int argc, char const *argv[]) {
         buf_id[i] =shmat(shmid[i], NULL, 0);
     }
 
-    int fd_in = open("./input.txt", O_RDONLY);
-    int fd_out = open("./output.txt", O_WRONLY | O_CREAT);
+    int fd_in = open("./doc/input.txt", O_RDONLY);
+    int fd_out = open("./doc/output.txt", O_WRONLY | O_CREAT);
 
     int i;
 

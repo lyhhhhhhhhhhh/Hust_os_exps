@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/exp3.dir/src/exp3.c.o  -o bin/exp3  -lpthread -lm 

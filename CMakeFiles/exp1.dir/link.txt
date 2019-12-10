@@ -1,1 +1,1 @@
-/usr/bin/cc   -rdynamic CMakeFiles/exp1.dir/exp1.c.o  -o exp1 
+/usr/bin/cc   -rdynamic CMakeFiles/exp1.dir/src/exp1.c.o  -o bin/exp1  -lpthread -lm 

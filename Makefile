@@ -48,24 +48,13 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lyhhhhh/study/Operating_System/exp1
+CMAKE_SOURCE_DIR = /home/lyhhhhh/study/Operating_System/exp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lyhhhhh/study/Operating_System/exp1
+CMAKE_BINARY_DIR = /home/lyhhhhh/study/Operating_System/exp
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyhhhhh/study/Operating_System/exp1/CMakeFiles /home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyhhhhh/study/Operating_System/exp/CMakeFiles /home/lyhhhhh/study/Operating_System/exp/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyhhhhh/study/Operating_System/exp1/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyhhhhh/study/Operating_System/exp/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,204 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named cmake_test
+# Target rules for targets named exp2
 
 # Build rule for target.
-cmake_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cmake_test
-.PHONY : cmake_test
+exp2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exp2
+.PHONY : exp2
 
 # fast build rule for target.
-cmake_test/fast:
-	$(MAKE) -f CMakeFiles/cmake_test.dir/build.make CMakeFiles/cmake_test.dir/build
-.PHONY : cmake_test/fast
+exp2/fast:
+	$(MAKE) -f CMakeFiles/exp2.dir/build.make CMakeFiles/exp2.dir/build
+.PHONY : exp2/fast
 
-exp1.o: exp1.c.o
+#=============================================================================
+# Target rules for targets named exp2_add
 
-.PHONY : exp1.o
+# Build rule for target.
+exp2_add: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exp2_add
+.PHONY : exp2_add
+
+# fast build rule for target.
+exp2_add/fast:
+	$(MAKE) -f CMakeFiles/exp2_add.dir/build.make CMakeFiles/exp2_add.dir/build
+.PHONY : exp2_add/fast
+
+#=============================================================================
+# Target rules for targets named exp1
+
+# Build rule for target.
+exp1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exp1
+.PHONY : exp1
+
+# fast build rule for target.
+exp1/fast:
+	$(MAKE) -f CMakeFiles/exp1.dir/build.make CMakeFiles/exp1.dir/build
+.PHONY : exp1/fast
+
+#=============================================================================
+# Target rules for targets named exp3
+
+# Build rule for target.
+exp3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exp3
+.PHONY : exp3
+
+# fast build rule for target.
+exp3/fast:
+	$(MAKE) -f CMakeFiles/exp3.dir/build.make CMakeFiles/exp3.dir/build
+.PHONY : exp3/fast
+
+#=============================================================================
+# Target rules for targets named exp4
+
+# Build rule for target.
+exp4: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exp4
+.PHONY : exp4
+
+# fast build rule for target.
+exp4/fast:
+	$(MAKE) -f CMakeFiles/exp4.dir/build.make CMakeFiles/exp4.dir/build
+.PHONY : exp4/fast
+
+src/exp1.o: src/exp1.c.o
+
+.PHONY : src/exp1.o
 
 # target to build an object file
-exp1.c.o:
-	$(MAKE) -f CMakeFiles/cmake_test.dir/build.make CMakeFiles/cmake_test.dir/exp1.c.o
-.PHONY : exp1.c.o
+src/exp1.c.o:
+	$(MAKE) -f CMakeFiles/exp1.dir/build.make CMakeFiles/exp1.dir/src/exp1.c.o
+.PHONY : src/exp1.c.o
 
-exp1.i: exp1.c.i
+src/exp1.i: src/exp1.c.i
 
-.PHONY : exp1.i
+.PHONY : src/exp1.i
 
 # target to preprocess a source file
-exp1.c.i:
-	$(MAKE) -f CMakeFiles/cmake_test.dir/build.make CMakeFiles/cmake_test.dir/exp1.c.i
-.PHONY : exp1.c.i
+src/exp1.c.i:
+	$(MAKE) -f CMakeFiles/exp1.dir/build.make CMakeFiles/exp1.dir/src/exp1.c.i
+.PHONY : src/exp1.c.i
 
-exp1.s: exp1.c.s
+src/exp1.s: src/exp1.c.s
 
-.PHONY : exp1.s
+.PHONY : src/exp1.s
 
 # target to generate assembly for a file
-exp1.c.s:
-	$(MAKE) -f CMakeFiles/cmake_test.dir/build.make CMakeFiles/cmake_test.dir/exp1.c.s
-.PHONY : exp1.c.s
+src/exp1.c.s:
+	$(MAKE) -f CMakeFiles/exp1.dir/build.make CMakeFiles/exp1.dir/src/exp1.c.s
+.PHONY : src/exp1.c.s
+
+src/exp2.o: src/exp2.c.o
+
+.PHONY : src/exp2.o
+
+# target to build an object file
+src/exp2.c.o:
+	$(MAKE) -f CMakeFiles/exp2.dir/build.make CMakeFiles/exp2.dir/src/exp2.c.o
+.PHONY : src/exp2.c.o
+
+src/exp2.i: src/exp2.c.i
+
+.PHONY : src/exp2.i
+
+# target to preprocess a source file
+src/exp2.c.i:
+	$(MAKE) -f CMakeFiles/exp2.dir/build.make CMakeFiles/exp2.dir/src/exp2.c.i
+.PHONY : src/exp2.c.i
+
+src/exp2.s: src/exp2.c.s
+
+.PHONY : src/exp2.s
+
+# target to generate assembly for a file
+src/exp2.c.s:
+	$(MAKE) -f CMakeFiles/exp2.dir/build.make CMakeFiles/exp2.dir/src/exp2.c.s
+.PHONY : src/exp2.c.s
+
+src/exp2_add.o: src/exp2_add.c.o
+
+.PHONY : src/exp2_add.o
+
+# target to build an object file
+src/exp2_add.c.o:
+	$(MAKE) -f CMakeFiles/exp2_add.dir/build.make CMakeFiles/exp2_add.dir/src/exp2_add.c.o
+.PHONY : src/exp2_add.c.o
+
+src/exp2_add.i: src/exp2_add.c.i
+
+.PHONY : src/exp2_add.i
+
+# target to preprocess a source file
+src/exp2_add.c.i:
+	$(MAKE) -f CMakeFiles/exp2_add.dir/build.make CMakeFiles/exp2_add.dir/src/exp2_add.c.i
+.PHONY : src/exp2_add.c.i
+
+src/exp2_add.s: src/exp2_add.c.s
+
+.PHONY : src/exp2_add.s
+
+# target to generate assembly for a file
+src/exp2_add.c.s:
+	$(MAKE) -f CMakeFiles/exp2_add.dir/build.make CMakeFiles/exp2_add.dir/src/exp2_add.c.s
+.PHONY : src/exp2_add.c.s
+
+src/exp3.o: src/exp3.c.o
+
+.PHONY : src/exp3.o
+
+# target to build an object file
+src/exp3.c.o:
+	$(MAKE) -f CMakeFiles/exp3.dir/build.make CMakeFiles/exp3.dir/src/exp3.c.o
+.PHONY : src/exp3.c.o
+
+src/exp3.i: src/exp3.c.i
+
+.PHONY : src/exp3.i
+
+# target to preprocess a source file
+src/exp3.c.i:
+	$(MAKE) -f CMakeFiles/exp3.dir/build.make CMakeFiles/exp3.dir/src/exp3.c.i
+.PHONY : src/exp3.c.i
+
+src/exp3.s: src/exp3.c.s
+
+.PHONY : src/exp3.s
+
+# target to generate assembly for a file
+src/exp3.c.s:
+	$(MAKE) -f CMakeFiles/exp3.dir/build.make CMakeFiles/exp3.dir/src/exp3.c.s
+.PHONY : src/exp3.c.s
+
+src/exp4.o: src/exp4.c.o
+
+.PHONY : src/exp4.o
+
+# target to build an object file
+src/exp4.c.o:
+	$(MAKE) -f CMakeFiles/exp4.dir/build.make CMakeFiles/exp4.dir/src/exp4.c.o
+.PHONY : src/exp4.c.o
+
+src/exp4.i: src/exp4.c.i
+
+.PHONY : src/exp4.i
+
+# target to preprocess a source file
+src/exp4.c.i:
+	$(MAKE) -f CMakeFiles/exp4.dir/build.make CMakeFiles/exp4.dir/src/exp4.c.i
+.PHONY : src/exp4.c.i
+
+src/exp4.s: src/exp4.c.s
+
+.PHONY : src/exp4.s
+
+# target to generate assembly for a file
+src/exp4.c.s:
+	$(MAKE) -f CMakeFiles/exp4.dir/build.make CMakeFiles/exp4.dir/src/exp4.c.s
+.PHONY : src/exp4.c.s
 
 # Help Target
 help:
@@ -156,12 +316,28 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... cmake_test"
 	@echo "... edit_cache"
-	@echo "... exp1.o"
-	@echo "... exp1.i"
-	@echo "... exp1.s"
+	@echo "... exp2"
+	@echo "... exp2_add"
+	@echo "... exp1"
+	@echo "... exp3"
+	@echo "... rebuild_cache"
+	@echo "... exp4"
+	@echo "... src/exp1.o"
+	@echo "... src/exp1.i"
+	@echo "... src/exp1.s"
+	@echo "... src/exp2.o"
+	@echo "... src/exp2.i"
+	@echo "... src/exp2.s"
+	@echo "... src/exp2_add.o"
+	@echo "... src/exp2_add.i"
+	@echo "... src/exp2_add.s"
+	@echo "... src/exp3.o"
+	@echo "... src/exp3.i"
+	@echo "... src/exp3.s"
+	@echo "... src/exp4.o"
+	@echo "... src/exp4.i"
+	@echo "... src/exp4.s"
 .PHONY : help
 
 

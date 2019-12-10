@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lyhhhhh/study/Operating_System/exp/src/exp2_add.c
+stdio.h
+-
+unistd.h
+-
+sys/ipc.h
+-
+sys/shm.h
+-
+sys/sem.h
+-
+sys/wait.h
+-
+string.h
+-
+

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lyhhhhh/study/Operating_System/exp/src/exp4.c
+stdio.h
+-
+string.h
+-
+unistd.h
+-
+sys/stat.h
+-
+dirent.h
+-
+pwd.h
+-
+time.h
+-
+

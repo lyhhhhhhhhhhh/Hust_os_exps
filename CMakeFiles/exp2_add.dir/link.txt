@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/exp2_add.dir/src/exp2_add.c.o  -o bin/exp2_add  -lpthread -lm 

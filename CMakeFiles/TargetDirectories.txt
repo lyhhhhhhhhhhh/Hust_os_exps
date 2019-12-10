@@ -1,3 +1,7 @@
-/home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/rebuild_cache.dir
-/home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/cmake_test.dir
-/home/lyhhhhh/study/Operating_System/exp1/CMakeFiles/edit_cache.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/edit_cache.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/exp2.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/exp2_add.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/exp1.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/exp3.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/rebuild_cache.dir
+/home/lyhhhhh/study/Operating_System/exp/CMakeFiles/exp4.dir
