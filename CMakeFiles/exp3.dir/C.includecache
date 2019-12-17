@@ -11,6 +11,8 @@ stdio.h
 -
 unistd.h
 -
+string.h
+-
 sys/ipc.h
 -
 sys/shm.h

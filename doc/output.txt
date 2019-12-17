@@ -67,4 +67,3 @@ SEE ALSO
        or available locally via: info '(coreutils) echo invocation'
 
 GNU coreutils 8.31                                                                November 2019                                                                          ECHO(1)
- EC

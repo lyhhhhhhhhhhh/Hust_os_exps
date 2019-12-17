@@ -22,16 +22,19 @@ int get_file_size(const char *path)//use the struct in linux to get the file of 
 	int filesize = -1;	
 	struct stat statbuff;
 	if(stat(path, &statbuff) < 0){
-		return filesize;
+		return filesize;//filesize = -1, the file do not exit
 	}else{
 		filesize = statbuff.st_size;
 	}
 	return filesize;
 }
 
+/* global varies*/
 int semid,shmid[BUF_NUM];
-void* buf_id[BUF_NUM];
-int pid[2];
+void* buf_id[BUF_NUM];//the pointer array with buf address.
+int pid[2];//pid array.
+
+
 
 void P(int semid, int index) {
     struct sembuf sem;
@@ -99,7 +102,7 @@ int main(int argc, char const *argv[]) {
             }
 
             id +=1;
-            id = id % 3;
+            id = id % BUF_NUM;//形成环形缓冲
         }
         for (int i=0; i<BUF_NUM; i++) {
             shmdt(buf_id[i]);
@@ -130,7 +133,7 @@ int main(int argc, char const *argv[]) {
             }
 
             id +=1;
-            id = id % 3;
+            id = id % BUF_NUM;
         }	
         for (int i=0; i<BUF_NUM; i++) {
             shmdt(buf_id[i]);
@@ -148,9 +151,8 @@ int main(int argc, char const *argv[]) {
         close(fd_in);
         close(fd_out);          
 	}
- 
-	return 0;
 
+	return 0;
 }
 
 
