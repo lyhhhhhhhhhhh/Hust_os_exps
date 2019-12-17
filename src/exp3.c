@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <string.h>
+
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
@@ -13,6 +15,7 @@
 #define BUF_SIZE 3
 
 #include <sys/stat.h>
+
 
 int get_file_size(const char *path)//use the struct in linux to get the file of input.txt.
 {
@@ -64,12 +67,12 @@ int main(int argc, char const *argv[]) {
         buf_id[i] =shmat(shmid[i], NULL, 0);
     }
 
-    int fd_in = open("./doc/input.txt", O_RDONLY);
-    int fd_out = open("./doc/output.txt", O_WRONLY | O_CREAT);
+    int fd_in = open("/home/lyhhhhh/study/Operating_System/exp/doc/input.txt", O_RDONLY);
+    int fd_out = open("/home/lyhhhhh/study/Operating_System/exp/doc/output.txt", O_WRONLY | O_CREAT);
 
     int i;
 
-    int file_size = get_file_size("./input.txt");// get the size of the file.
+    int file_size = get_file_size("/home/lyhhhhh/study/Operating_System/exp/doc/input.txt");// get the size of the file.
 
     for (i = 0; i < 2; i++) {
 		if((pid[i] = fork()) == 0) {
@@ -84,6 +87,8 @@ int main(int argc, char const *argv[]) {
             P(semid, 0);
             P(semid, 2);
 
+
+            // memset(buf_id[id],0,sizeof(char)*BUF_SIZE);
             size = read(fd_in, buf_id[id], BUF_SIZE);
 
             V(semid, 2);
@@ -96,11 +101,14 @@ int main(int argc, char const *argv[]) {
             id +=1;
             id = id % 3;
         }
+        for (int i=0; i<BUF_NUM; i++) {
+            shmdt(buf_id[i]);
+        }
         printf("read break!\n");     
 
 	} else if (i == 1) {
         int id = 0;
-        int write_size = 0;
+        int write_size = BUF_SIZE;
         while(1) {
             P(semid, 1);
             P(semid, 2);
@@ -124,7 +132,11 @@ int main(int argc, char const *argv[]) {
             id +=1;
             id = id % 3;
         }	
+        for (int i=0; i<BUF_NUM; i++) {
+            shmdt(buf_id[i]);
+        }
         printf("write break!\n");
+
 	} else {
         waitpid(pid[0],NULL,0);
         waitpid(pid[1],NULL,0);
